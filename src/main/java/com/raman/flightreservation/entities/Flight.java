@@ -1,10 +1,9 @@
 package com.raman.flightreservation.entities;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
-
-import java.sql.Timestamp;
 
 @Entity
 public class Flight extends AbstractEntity {
