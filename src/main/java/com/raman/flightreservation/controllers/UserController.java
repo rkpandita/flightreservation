@@ -21,6 +21,11 @@ public class UserController {
 	public String showRegistrationPage() {
 		return "login/registerUser";
 	}
+	
+	@RequestMapping("showLogin")
+	public String showLoginPage() {
+		return "login/login";
+	}
 
 	@RequestMapping(value = "registerUser", method = RequestMethod.POST)
 	public String register(@ModelAttribute("user") User user) {
@@ -32,7 +37,7 @@ public class UserController {
 	public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap modelMap) {
 		User user = userRepository.findByEmail(email);
 		if (user.getPassword().equals(password)) {
-			return "login/findFlights";
+			return "findFlights";
 		} else {
 			modelMap.addAttribute("msg","Invalid User Name or Password. Please try again.");
 		}
