@@ -29,10 +29,12 @@ public class ReservationServiceImpl implements ReservationService {
 	public Reservation bookFlight(ReservationRequest request) {
 
 		// Logic to Make Payment via Payment Gateway
-		// request.getCardNumber();
-		// request.getNameOnTheCard();
-		// request.getExpiryDate();
-		// request.getSecurityCode();
+		/*
+		 * request.getCardNumber(); 
+		 * request.getNameOnTheCard(); 
+		 * request.getExpiryDate();
+		 * request.getSecurityCode();
+		 */
 
 		Long flightId = request.getFlightId();
 		Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new EntityNotFoundException());
@@ -50,9 +52,8 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setPassenger(savedPassenger);
 		reservation.setCheckedIn(false);
 
-		Reservation savedReservation = reservationRepository.save(reservation);
+		return reservationRepository.save(reservation);
 
-		return savedReservation;
 	}
 
 }

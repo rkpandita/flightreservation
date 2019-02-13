@@ -24,7 +24,7 @@ public class ReservationController {
 	@Autowired
 	ReservationService reservationService;
 
-	@RequestMapping("/showCompleteReservation")
+	@RequestMapping(value = "/showCompleteReservation", method = RequestMethod.GET)
 	public String showCompleteReservation(@RequestParam("flightId") Long flightId, ModelMap modelMap) {
 
 		Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new EntityNotFoundException());

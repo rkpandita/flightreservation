@@ -14,23 +14,25 @@ import com.raman.flightreservation.repository.UserRepository;
 @Controller
 public class UserController {
 
+	private static final String LOGIN_PAGE = "login/login";
+
 	@Autowired
 	UserRepository userRepository;
 
-	@RequestMapping("showReg")
+	@RequestMapping(value = "showReg", method = RequestMethod.GET)
 	public String showRegistrationPage() {
 		return "login/registerUser";
 	}
 	
-	@RequestMapping("showLogin")
+	@RequestMapping(value = "showLogin", method = RequestMethod.GET)
 	public String showLoginPage() {
-		return "login/login";
+		return LOGIN_PAGE;
 	}
 
 	@RequestMapping(value = "registerUser", method = RequestMethod.POST)
 	public String register(@ModelAttribute("user") User user) {
 		userRepository.save(user);
-		return "login/login";
+		return LOGIN_PAGE;
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -41,7 +43,7 @@ public class UserController {
 		} else {
 			modelMap.addAttribute("msg","Invalid User Name or Password. Please try again.");
 		}
-		return "login/login";
+		return LOGIN_PAGE;
 	}
 
 }

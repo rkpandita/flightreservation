@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.raman.flightreservation.dto.ReservationUpdateRequest;
@@ -18,7 +19,7 @@ public class ReservationRestController {
 	@Autowired
 	ReservationRepository reservationRepository;
 
-	@RequestMapping("/reservations/{id}")
+	@RequestMapping(value = "/reservations/{id}", method = RequestMethod.GET)
 	public Reservation findReservation(@PathVariable("id") Long id) {
 		return reservationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 	}
