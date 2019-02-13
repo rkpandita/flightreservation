@@ -12,6 +12,8 @@ import com.raman.flightreservation.entities.Reservation;
 import com.raman.flightreservation.repository.FlightRepository;
 import com.raman.flightreservation.repository.PassengerRepository;
 import com.raman.flightreservation.repository.ReservationRepository;
+import com.raman.flightreservation.util.EmailUtil;
+import com.raman.flightreservation.util.PDFGenerator;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -24,7 +26,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	ReservationRepository reservationRepository;
-
+	
+	@Autowired
+	PDFGenerator pdfGenerator;
+	
+	@Autowired
+	EmailUtil emailUtil;
+	
 	@Override
 	public Reservation bookFlight(ReservationRequest request) {
 
@@ -52,7 +60,18 @@ public class ReservationServiceImpl implements ReservationService {
 		reservation.setPassenger(savedPassenger);
 		reservation.setCheckedIn(false);
 
-		return reservationRepository.save(reservation);
+		Reservation savedReservation = reservationRepository.save(reservation);
+		 
+		String filePath = "C:/Users/a236534/Desktop/reservation" + savedReservation.getId() + ".pdf";
+		String subject = "Itinerary details for " + savedReservation.getPassenger().getFirstName();
+		String body = "Congratulations !! Your tickets are booked. " + "Please find your Itinerary attached. "
+				+ "Thanks for flying with us :) ";
+		
+		pdfGenerator.generateItinerary(savedReservation, filePath);
+		
+		emailUtil.sendItinerary(passenger.getEmail(), subject, body, filePath);
+
+		return savedReservation;
 
 	}
 
