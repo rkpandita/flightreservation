@@ -44,5 +44,11 @@ public class Reservation extends AbstractEntity {
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation [checkedIn=" + checkedIn + ", noOfBags=" + noOfBags + ", passenger=" + passenger
+				+ ", flight=" + flight + "]";
+	}
 	
 }
