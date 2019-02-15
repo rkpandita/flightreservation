@@ -21,6 +21,8 @@ import com.raman.flightreservation.util.PDFGenerator;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReservationServiceImpl.class);
+
 	@Value("${com.raman.flightreservation.itinerary.dirpath}")
 	private String ITINERARY_DIR;
 
@@ -29,8 +31,6 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Value("${com.raman.flightreservation.itinerary.email.body}")
 	private String EMAIL_BODY;
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReservationServiceImpl.class);
 	
 	@Autowired
 	FlightRepository flightRepository;
