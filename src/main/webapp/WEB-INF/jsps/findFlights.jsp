@@ -9,12 +9,15 @@
 	<body>
 		<h2>Find flights</h2>
 		<form action="findFlights" method="get">
-			From: <input type="text" name="from" /><br/>
-			To: <input type="text" name="to" /><br/>
-			Departure Date: <input type="text" name="departureDate" /><br/>
-			<input type="submit" value="search" /><br/><br/>
-			<a href="/flightreservation/admin/showAddFlight">Add Flight - Only Admin users</a><br/>
-			<a href="/flightreservation/generateReport">Generate Report</a>
+			<pre>
+				From:           <input type="text" name="from" /><br/>
+				To:             <input type="text" name="to" /><br/>
+				Departure Date: <input type="text" name="departureDate" /><br/>
+				<input type="submit" value="search" /><br/><br/>
+				<a href="/flightreservation/admin/showAddFlight">Add Flight (Admin users)</a><br/><br/>
+				<a href="/flightreservation/generateReport">Generate Report</a><br/><br/>
+				<a href="/flightreservation/displayUpload">Upload documents/images</a>
+			</pre>
 		</form>
 	</body>
 </html>
