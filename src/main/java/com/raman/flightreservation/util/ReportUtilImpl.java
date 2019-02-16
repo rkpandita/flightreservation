@@ -4,18 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ReportUtilImpl implements ReportUtil {
 
-	private Log logger = LogFactory.getLog(ReportUtilImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ReportUtilImpl.class);
+
 
 	// Please add "/*" in 'WebSecurityConfig' for 'Generating reports'
 	@Override
@@ -32,7 +33,7 @@ public class ReportUtilImpl implements ReportUtil {
 		try {
 			ChartUtilities.saveChartAsJPEG(new File(path + "/AirlinesPieChart.jpeg"), chart, 300, 300);
 		} catch (IOException e) {
-			logger.error("Error while generating chart: ", e);
+			LOGGER.error("Error while generating chart: ", e);
 		}
 	}
 
