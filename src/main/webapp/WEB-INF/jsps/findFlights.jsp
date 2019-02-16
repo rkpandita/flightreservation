@@ -13,7 +13,8 @@
 			To: <input type="text" name="to" /><br/>
 			Departure Date: <input type="text" name="departureDate" /><br/>
 			<input type="submit" value="search" /><br/><br/>
-			<a href="/flightreservation/admin/showAddFlight">Add Flight - Only Admin users</a>
+			<a href="/flightreservation/admin/showAddFlight">Add Flight - Only Admin users</a><br/>
+			<a href="/flightreservation/generateReport">Generate Report</a>
 		</form>
 	</body>
 </html>

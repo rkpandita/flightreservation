@@ -3,6 +3,8 @@ package com.raman.flightreservation.controllers;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.raman.flightreservation.entities.Flight;
 import com.raman.flightreservation.repository.FlightRepository;
+import com.raman.flightreservation.services.FlightService;
+import com.raman.flightreservation.util.ReportUtil;
 
 @Controller
 public class FlightController {
@@ -22,7 +26,16 @@ public class FlightController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FlightController.class);
 
 	@Autowired
+	FlightService service;
+	
+	@Autowired
 	FlightRepository flightRepository;
+	
+	@Autowired
+	ReportUtil reportUtil;
+	
+	@Autowired
+	private ServletContext context;
 
 	@RequestMapping(value = "findFlights", method = RequestMethod.GET)
 	public String findFlights(@RequestParam("from") String from, @RequestParam("to") String to,
@@ -38,7 +51,15 @@ public class FlightController {
 	
 	@RequestMapping("admin/showAddFlight")
 	public String showAddFlight() {
-		return "/addFlight";
+		return "addFlight";
+	}
+	
+	@RequestMapping(value = "generateReport", method = RequestMethod.GET)
+	public String generateReport() {
+		List<Object[]> data = service.findOperatingAirlines();
+		String path = context.getRealPath("/");
+		reportUtil.generatePieChart(path, data);
+		return "airlinesReport";
 	}
 
 }

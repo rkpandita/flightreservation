@@ -24,8 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
+		// Add "/*" to permit Report generation
 		httpSecurity.authorizeRequests()
-		.antMatchers("/showReg","/","/index.html","/registerUser","/login","/showLogin","/login/*").permitAll()
+		.antMatchers("/","/index.html","/showReg","/showLogin","/registerUser","/login","/login/*","/generateReport").permitAll()
 		.antMatchers("/admin/showAddFlight").hasAnyAuthority("ADMIN").anyRequest().authenticated().and().csrf().disable();
 	}
 

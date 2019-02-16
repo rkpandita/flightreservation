@@ -16,4 +16,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 	List<Flight> findFlights(@Param("departureCity") String from, @Param("arrivalCity") String to,
 					 @Param("dateOfDeparture") Date departureDate);
 
+	@Query("SELECT operatingAirlines, COUNT(operatingAirlines) FROM Flight GROUP BY operatingAirlines")
+	List<Object[]> findOperatingAirlines();
+
 }
