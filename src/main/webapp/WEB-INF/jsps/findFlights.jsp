@@ -12,7 +12,7 @@
 			<pre>
 				From:           <input type="text" name="from" /><br/>
 				To:             <input type="text" name="to" /><br/>
-				Departure Date: <input type="text" name="departureDate" /><br/>
+				Departure Date: <input type="text" name="departureDate" /><br/> 02-05-2019
 				<input type="submit" value="search" /><br/><br/>
 				<a href="/flightreservation/admin/showAddFlight">Add Flight (Admin users)</a><br/><br/>
 				<a href="/flightreservation/generateReport">Generate Report</a><br/><br/>
