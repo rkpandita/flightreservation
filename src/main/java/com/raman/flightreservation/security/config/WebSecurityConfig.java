@@ -25,13 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception {
 		// Add "/*" to permit Report generation
-		
-		  httpSecurity.authorizeRequests()
-		  .antMatchers("/","/index.html","/showReg","/showLogin","/registerUser",
-		  "/login","/login/*","/generateReport","/displayUpload","/upload","/download","/reservations","/reservations/*").permitAll()
-		  .antMatchers("/admin/showAddFlight").hasAnyAuthority("ADMIN").anyRequest().
-		  authenticated().and().csrf().disable();
-		 
+
+		httpSecurity.authorizeRequests()
+				.antMatchers("/", "/index.html", "/showReg", "/showLogin", "/registerUser", "/login", "/login/*",
+						"/generateReport", "/displayUpload", "/upload", "/download", "/reservations/*",
+						"/swagger-ui.html", "/v2/api-docs", "/actuator/*", "/browser/*", "/staticFilterBean",
+						"/staticFilterBeanList", "/dynamicFilterBean", "/dynamicFilterBeanList", "/person/*", "*", "/*")
+				.permitAll().antMatchers("/admin/showAddFlight").hasAnyAuthority("ADMIN").anyRequest().authenticated()
+				.and().csrf().disable();
+
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.raman.flightreservation.controllers;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +59,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "registerUser", method = RequestMethod.POST)
-	public String register(@ModelAttribute("user") User user) {
+	public String register(@Valid @ModelAttribute("user") User user) {
 		LOGGER.info("Inside register() {}", user);
 		user.setPassword(encoder.encode(user.getPassword()));
 		userRepository.save(user);

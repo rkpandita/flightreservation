@@ -32,7 +32,7 @@ public class ReservationController {
 	public String showCompleteReservation(@RequestParam("flightId") Long flightId, ModelMap modelMap) {
 
 		LOGGER.info("Method showCompleteReservation() invoked with Flight Id: {} ", flightId);
-		Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new EntityNotFoundException());
+		Flight flight = flightRepository.findById(flightId).orElseThrow(EntityNotFoundException::new);
 		modelMap.addAttribute("flight", flight);
 		LOGGER.info("Flight is: {} ", flight);
 		return "completeReservation";

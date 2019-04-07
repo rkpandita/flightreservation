@@ -64,7 +64,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 		Long flightId = request.getFlightId();
 		LOGGER.info("Fetching flight with Flight Id: {}", flightId);
-		Flight flight = flightRepository.findById(flightId).orElseThrow(() -> new EntityNotFoundException());
+		Flight flight = flightRepository.findById(flightId).orElseThrow(EntityNotFoundException::new);
 
 		Passenger passenger = new Passenger();
 		passenger.setFirstName(request.getPassengerFirstName());

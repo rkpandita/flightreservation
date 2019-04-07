@@ -6,13 +6,26 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @Entity
+@ApiModel(description = "Info about the Entity User.")
 public class User extends AbstractEntity {
 
+	@Size(min = 4, message = "Name should at least have 2 characters")
 	private String firstName;
 	private String lastName;
+	@Email
+	@NotNull
 	private String email;
+	@NotNull
+	@ApiModelProperty(notes = "Password is encrypted using Basic Authentication")
 	private String password;
 	@ManyToMany
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

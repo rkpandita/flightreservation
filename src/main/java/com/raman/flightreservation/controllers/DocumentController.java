@@ -51,7 +51,7 @@ public class DocumentController {
 	
 	@RequestMapping("/download")
 	public StreamingResponseBody download(@RequestParam("id") long id, HttpServletResponse response) {
-		Document document = repository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		Document document = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 		byte[] data = document.getData();
 		response.setHeader("content-Disposition", "attachment;filename=downloaded.jpeg");
 		return outputStream -> outputStream.write(data);
