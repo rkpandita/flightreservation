@@ -11,8 +11,9 @@ Tools used:
 4. itextpdf (for generation of PDFs)
 5. jfreechart (for generation of Pie chart)
 6. slf4j and LogBack (for Logging)
+7. Swagger for REST API's (for Documentation)
 
-Features: 
+Application Features: 
 1. Helps book flight tickets
 2. Sending Emails
 3. PDF generation
@@ -20,9 +21,15 @@ Features:
 4. Logging
 5. Uploading/Downloading Docs
 
+Other features:
+1. Java Bean Validation (ver 2.0)
+2. API versioning
+3. Spring Boot Actuator
+
 Technologies/Frameworks Used:
 1. Spring Core, IoC and MVC
 2. Spring Data JPA
 3. Spring REST
-4. Spring Security and Transaction
-5. Gmail SMTP for sending email
+4. Swagger for REST API's
+5. Spring Security and Transaction
+6. Gmail SMTP for sending email
