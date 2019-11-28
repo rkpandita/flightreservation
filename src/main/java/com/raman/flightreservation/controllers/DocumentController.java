@@ -22,9 +22,9 @@ import com.raman.flightreservation.repository.DocumentRepository;
 
 @Controller
 public class DocumentController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(DocumentController.class);
-	
+
 	@Autowired
 	DocumentRepository repository;
 
@@ -35,7 +35,8 @@ public class DocumentController {
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public String uploadDocument(@RequestParam("document") MultipartFile multipartFile, @RequestParam("id") long id, ModelMap modelMap) {
+	public String uploadDocument(@RequestParam("document") MultipartFile multipartFile, @RequestParam("id") long id,
+			ModelMap modelMap) {
 		Document document = new Document();
 		document.setId(id);
 		document.setName(multipartFile.getOriginalFilename());
@@ -48,7 +49,7 @@ public class DocumentController {
 		fetchDocuments(modelMap);
 		return "documentUpload";
 	}
-	
+
 	@RequestMapping("/download")
 	public StreamingResponseBody download(@RequestParam("id") long id, HttpServletResponse response) {
 		Document document = repository.findById(id).orElseThrow(EntityNotFoundException::new);
@@ -56,7 +57,7 @@ public class DocumentController {
 		response.setHeader("content-Disposition", "attachment;filename=downloaded.jpeg");
 		return outputStream -> outputStream.write(data);
 	}
-	
+
 	private void fetchDocuments(ModelMap modelMap) {
 		List<Document> documents = repository.findAll();
 		LOGGER.info("Size of documents: {}", documents.size());
