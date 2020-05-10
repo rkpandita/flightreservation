@@ -3,14 +3,14 @@ package com.raman.flightreservation.entities;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModel;
+//import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@ApiModel(description = "Reservation Info")
+//@ApiModel(description = "Reservation Info")
 public class Reservation extends AbstractEntity {
 
-	@ApiModelProperty(notes = "Tells if the passenger has Checked In or not")
+	//@ApiModelProperty(notes = "Tells if the passenger has Checked In or not")
 	private Boolean checkedIn;
 	private int noOfBags;
 	@OneToOne
